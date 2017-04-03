@@ -1,0 +1,85 @@
+﻿<form id="inputForm" name="inputForm" style="padding:30px">
+    <input type="hidden" class="form-control" name="id" ng-model="selected.id" required />
+
+    <div ng-class="[{ 'form-group has-error has-feedback' : inputForm.lastname.$error.required },
+                 {'form-group has-warning has-feedback' : inputForm.lastname.$error.pattern},
+                 {'form-group has-success has-feedback':inputForm.lastname.$valid}]">
+        <div class="input-group">
+            <span class="input-group-addon">Фамилия</span>
+            <input type="text" class="form-control" name="lastname" ng-model="selected.lastname" pattern="[A-ZА-Я][a-zA-Zа-яА-Я\-\'\s]+" required>
+            <span ng-class="[{ 'glyphicon glyphicon-remove form-control-feedback' : inputForm.lastname.$error.required },
+                 {'glyphicon glyphicon-warning-sign form-control-feedback' : inputForm.lastname.$error.pattern},
+                 {'glyphicon glyphicon-ok form-control-feedback':inputForm.lastname.$valid}]"></span>
+        </div>
+        <p ng-show="inputForm.lastname.$error.pattern" class="help-block">Неверный формат данных!</p>
+        <p ng-show="inputForm.lastname.$error.required" class="help-block">Обязательное поле!</p>
+        <p ng-show="inputForm.lastname.$valid" class="help-block">Введено верно</p>
+    </div>
+
+    <div ng-class="[{ 'form-group has-error has-feedback' : inputForm.firstname.$error.required },
+                 {'form-group has-warning has-feedback' : inputForm.firstname.$error.pattern},
+                 {'form-group has-success has-feedback':inputForm.firstname.$valid}]">
+        <div class="input-group">
+            <span class="input-group-addon">Имя</span>
+            <input type="text" class="form-control" name="firstname" ng-model="selected.firstname" pattern="[A-ZА-Я][a-zA-Zа-яА-Я\-\'\s]+" required>
+            <span ng-class="[{ 'glyphicon glyphicon-remove form-control-feedback' : inputForm.firstname.$error.required },
+                 {'glyphicon glyphicon-warning-sign form-control-feedback' : inputForm.firstname.$error.pattern},
+                 {'glyphicon glyphicon-ok form-control-feedback':inputForm.firstname.$valid}]"></span>
+        </div>
+        <p ng-show="inputForm.firstname.$error.pattern" class="help-block">Неверный формат данных!</p>
+        <p ng-show="inputForm.firstname.$error.required" class="help-block">Обязательное поле!</p>
+        <p ng-show="inputForm.firstname.$valid" class="help-block">Введено верно</p>
+    </div>
+
+    <div ng-class="[{'form-group has-warning has-feedback' : inputForm.patronymic.$error.pattern},
+                 {'form-group has-success has-feedback':inputForm.patronymic.$valid}]">
+        <div class="input-group">
+            <span class="input-group-addon">Отчество</span>
+            <input type="text" class="form-control" name="patronymic" ng-model="selected.patronymic" pattern="[A-ZА-Я][a-zA-Zа-яА-Я\-\'\s]+">
+            <span ng-class="[{'glyphicon glyphicon-warning-sign form-control-feedback' : inputForm.patronymic.$error.pattern},
+                 {'glyphicon glyphicon-ok form-control-feedback':inputForm.patronymic.$valid}]"></span>
+        </div>
+        <p ng-show="inputForm.patronymic.$error.pattern" class="help-block">Неверный формат данных!</p>
+        <p ng-show="!inputForm.patronymic.$error.pattern" class="help-block">Введено верно</p>
+    </div>
+
+    <div ng-class="[{'form-group has-warning has-feedback' : inputForm.birth.$error.required},
+         {'form-group has-warning has-feedback' : inputForm.birth.$error.pattern},
+          {'form-group has-success has-feedback':inputForm.birth.$valid}]">
+        <div class=" input-group">
+            <span class="input-group-addon">Дата рождения</span>
+            <input type="date" class="form-control" name="birth" ng-model="selected.birth" pattern="[0-9]{4}\-[0-9]{2}\-[0-9]{2}" required />
+            <span ng-class="[{'glyphicon glyphicon-remove form-control-feedback' : inputForm.birth.$error.required},
+                 {'glyphicon glyphicon-ok form-control-feedback':inputForm.birth.$valid}]"></span>
+        </div>
+        <p ng-show="!inputForm.birth.$valid  || inputForm.birth.$error.pattern" class="help-block">Неверный формат данных!</p>
+        <p ng-show="inputForm.birth.$valid" class="help-block">Введено верно</p>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon">Пол</span>
+        <select class="form-control" name="gender" value="муж" required>
+            <option>муж</option>
+            <option>жен</option>
+        </select>
+    </div>
+
+    <div style="padding-top:30px">
+        <input type="button" class="btn btn-info" id="btnUpdate" value="Изменить" ng-model="selected" ng-click="updateUsr()"
+               ng-disabled="(inputForm.firstname.$invalid || inputForm.lastname.$invalid || inputForm.birth.$invalid) || inputForm.id.$error.required" />
+        <input type="button" class="btn btn-info" id="btnAdd" value="Добавить" ng-model="selected" ng-click="addUsr()"
+               ng-disabled="(inputForm.firstname.$invalid || inputForm.lastname.$invalid || inputForm.birth.$invalid) " />
+        <input type="button" class="btn btn-info" id="btnClear" value="Очистить" ng-model="selected" ng-click="clearUsr()" />
+    </div>
+
+</form>
+
+
+
+
+
+
+
+
+
+
